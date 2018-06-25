@@ -89,6 +89,8 @@ services:
         
         if fact_on(host, 'osfamily') == 'windows'
           apply_manifest_on(host, "class { 'docker': docker_ee => true }")
+          docker_path = "/cygdrive/c/Program Files/Docker"
+          host.add_env_var('PATH', docker_path)
           puts "Waiting for box to come online"
           sleep 300
         end
